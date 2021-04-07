@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Diagnostics;
 
 using FourthTask.Logic.Components.Interfaces;
 
@@ -14,9 +15,13 @@ namespace FourthTask.Logic.Components
             _filePathToGetString = Path.Combine(Environment.CurrentDirectory, fileNameToGetString);
         }
 
-        public int CountString(string stringToCount) 
+        public int CountString(string stringToCount) //ToDo: Delete Stopwatch
         {
             int stringCounter = 0;
+
+            Stopwatch timer = new();
+
+            timer.Start();
 
             foreach (var item in File.ReadLines(_filePathToGetString)) 
             {
@@ -30,6 +35,10 @@ namespace FourthTask.Logic.Components
                     }
                 }
             }
+
+            timer.Stop();
+
+            Console.WriteLine($"CountString: {timer.ElapsedMilliseconds} ms");
 
             return stringCounter;
         }
