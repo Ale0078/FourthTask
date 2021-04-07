@@ -20,8 +20,8 @@ namespace FourthTask.Logic.Components
             Stopwatch timer = new();
 
             timer.Start();
-
-            using FileStream newFileWithReplace = new($"Replece_{_filePathToReplace}", FileMode.Create, FileAccess.Write);
+            
+            using FileStream newFileWithReplace = new($"Repleced_{_filePathToReplace}", FileMode.Create, FileAccess.Write);//ToDo: just Stream
             using StreamWriter writerToNewFile = new(newFileWithReplace);
 
             foreach (var item in File.ReadLines(_filePathToReplace))
