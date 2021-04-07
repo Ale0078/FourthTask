@@ -6,11 +6,11 @@ using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class ReplacerStream : IReplacerStream
+    public class TextReplacer : ITextReplacer
     {
         private string _filePathToReplace;
 
-        public ReplacerStream(string fileNameToReplace) 
+        public TextReplacer(string fileNameToReplace) 
         {
             _filePathToReplace = Path.Combine(Environment.CurrentDirectory, fileNameToReplace);
         }

@@ -1,6 +1,6 @@
 ﻿namespace FourthTask.Logic.Components.Interfaces
 {
-    public interface IReplacerStream
+    public interface ITextReplacer
     {
         void ReplaceString(string oldString, string newString);
     }

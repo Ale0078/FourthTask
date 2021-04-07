@@ -6,11 +6,11 @@ using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class CounterStream : ICounterStream
+    public class TextCounter : ITextCounter
     {
         private string _filePathToGetString;
 
-        public CounterStream(string fileNameToGetString)
+        public TextCounter(string fileNameToGetString)
         {
             _filePathToGetString = Path.Combine(Environment.CurrentDirectory, fileNameToGetString);
         }

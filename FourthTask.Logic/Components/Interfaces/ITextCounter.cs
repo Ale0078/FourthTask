@@ -1,6 +1,6 @@
 ﻿namespace FourthTask.Logic.Components.Interfaces
 {
-    public interface ICounterStream
+    public interface ITextCounter
     {
         int CountString(string stringToCount);
     }
