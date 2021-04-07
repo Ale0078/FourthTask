@@ -7,7 +7,7 @@ using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class TextReplacer : ITextReplacer, IDisposable
+    public class TextReplacer : ITextReplacer
     {
         private readonly Stream _streamToGetValueToReplace;
         private readonly Stream _streamToSetReplacingValue;

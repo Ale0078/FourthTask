@@ -7,7 +7,7 @@ using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class TextCounter : ITextCounter, IDisposable
+    public class TextCounter : ITextCounter
     {
         private readonly char[] _separators = new char[]
                 { ' ', ',', '.', ';', ':', '!', '?', '|', '<', '>', '"', '\r', '\n', '\t', '(', ')' };

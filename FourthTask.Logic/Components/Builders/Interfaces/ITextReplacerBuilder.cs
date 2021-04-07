@@ -1,8 +1,10 @@
-﻿using FourthTask.Logic.Components.Interfaces;
+﻿using System;
+
+using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components.Builders.Interfaces
 {
-    public interface ITextReplacerBuilder
+    public interface ITextReplacerBuilder : IDisposable
     {
         ITextReplacer Create();
     }
