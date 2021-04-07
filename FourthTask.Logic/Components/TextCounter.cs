@@ -1,18 +1,22 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Diagnostics;
 
 using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class TextCounter : ITextCounter
+    public class TextCounter : ITextCounter, IDisposable
     {
-        private string _filePathToGetString;
+        private readonly char[] _separators = new char[]
+                { ' ', ',', '.', ';', ':', '!', '?', '|', '<', '>', '"', '\r', '\n', '\t', '(', ')' };
 
-        public TextCounter(string fileNameToGetString)
+        private readonly Stream _streamToGetString;
+
+        public TextCounter(Stream streamToGetString)
         {
-            _filePathToGetString = Path.Combine(Environment.CurrentDirectory, fileNameToGetString);
+            _streamToGetString = streamToGetString;
         }
 
         public int CountString(string stringToCount) //ToDo: Delete Stopwatch
@@ -23,17 +27,24 @@ namespace FourthTask.Logic.Components
 
             timer.Start();
 
-            foreach (var item in File.ReadLines(_filePathToGetString)) 
-            {
-                string[] possibleAnswers = item.Split();
+            int count = 1000;
+            byte[] buffer = new byte[count];            
 
-                for (int i = 0; i < possibleAnswers.Length; i++)
+            while (_streamToGetString.Read(buffer, 0, count) != 0) 
+            {
+                string line = Encoding.UTF8.GetString(buffer);
+
+                string[] possibleAnswers = line.Split(_separators);
+
+                foreach (var item in possibleAnswers)
                 {
-                    if (possibleAnswers[i].Equals(stringToCount)) 
+                    if (item.Equals(stringToCount))
                     {
                         stringCounter++;
                     }
                 }
+
+                buffer = new byte[count];
             }
 
             timer.Stop();
@@ -41,6 +52,11 @@ namespace FourthTask.Logic.Components
             Console.WriteLine($"CountString: {timer.ElapsedMilliseconds} ms");
 
             return stringCounter;
+        }
+
+        public void Dispose()
+        {
+            _streamToGetString.Dispose();
         }
     }
 }

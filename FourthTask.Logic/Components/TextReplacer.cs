@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.IO;
 using System.Diagnostics;
 
@@ -6,32 +7,46 @@ using FourthTask.Logic.Components.Interfaces;
 
 namespace FourthTask.Logic.Components
 {
-    public class TextReplacer : ITextReplacer
+    public class TextReplacer : ITextReplacer, IDisposable
     {
-        private string _filePathToReplace;
+        private readonly Stream _streamToGetValueToReplace;
+        private readonly Stream _streamToSetReplacingValue;
 
-        public TextReplacer(string fileNameToReplace) 
+        public TextReplacer(Stream streamToGetValueToReplace, Stream streamToSetReplacingValue) 
         {
-            _filePathToReplace = Path.Combine(Environment.CurrentDirectory, fileNameToReplace);
+            _streamToGetValueToReplace = streamToGetValueToReplace;
+            _streamToSetReplacingValue = streamToSetReplacingValue;
         }
 
-        public void ReplaceString(string oldString, string newString) //ToDo: Delete Stopwatch
+        public void ReplaceString(string oldString, string newString)//ToDo: Delete Stopwatch
         {
             Stopwatch timer = new();
 
             timer.Start();
-            
-            using FileStream newFileWithReplace = new($"Repleced_{_filePathToReplace}", FileMode.Create, FileAccess.Write);//ToDo: just Stream
-            using StreamWriter writerToNewFile = new(newFileWithReplace);
 
-            foreach (var item in File.ReadLines(_filePathToReplace))
+            int count = 1000;
+            byte[] buffer = new byte[count];
+
+            while (_streamToGetValueToReplace.Read(buffer, 0, count) != 0) 
             {
-                writerToNewFile.WriteLine(item.Replace(oldString, newString));
+                string lineToReplace = Encoding.UTF8
+                    .GetString(buffer)
+                    .Replace(oldString, newString);
+
+                byte[] bufferToSetReplacingValue = Encoding.UTF8.GetBytes(lineToReplace);
+
+                _streamToSetReplacingValue.Write(bufferToSetReplacingValue, 0, bufferToSetReplacingValue.Length);
             }
 
             timer.Stop();
 
             Console.WriteLine($"ReplaceString: time {timer.ElapsedMilliseconds} ms");
+        }
+
+        public void Dispose() 
+        {
+            _streamToGetValueToReplace.Dispose();
+            _streamToSetReplacingValue.Dispose();
         }
     }
 }

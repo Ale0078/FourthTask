@@ -1,4 +1,6 @@
-﻿namespace FourthTask.Logic.Components.Interfaces
+﻿using System.IO;
+
+namespace FourthTask.Logic.Components.Interfaces
 {
     public interface ITextReplacer
     {
