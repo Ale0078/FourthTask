@@ -57,6 +57,7 @@ namespace FourthTask.Logic.Components
         public void Dispose()
         {
             _streamToGetString.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

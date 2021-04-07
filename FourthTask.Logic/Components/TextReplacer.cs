@@ -47,6 +47,7 @@ namespace FourthTask.Logic.Components
         {
             _streamToGetValueToReplace.Dispose();
             _streamToSetReplacingValue.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
