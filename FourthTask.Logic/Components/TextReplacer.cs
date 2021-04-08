@@ -44,33 +44,13 @@ namespace FourthTask.Logic.Components
                 string possibleOldString = lineToReplace.Split(_separators)[^1];
 
                 if (possibleOldString.Length <= oldString.Length)
-                {                    
-                    int counter = 0;
-
-                    for (int i = 0; i < possibleOldString.Length; i++)
-                    {
-                        if (oldString[i] == possibleOldString[i])
-                        {
-                            counter++;
-                        }
-                    }
-
-                    if (counter == possibleOldString.Length)
-                    {
-                        offset = counter;
-
-                        var amountOfBytes = Encoding.UTF8.GetBytes(possibleOldString);
-
-                        for (int i = 0; i < amountOfBytes.Length; i++)
-                        {
-                            buffer[i] = amountOfBytes[i];
-                            bufferToSetReplacingValue[^(i + 1)] = 0;
-                        }
-                    }
-                    else
-                    {
-                        offset = 0;
-                    }
+                {
+                    SetAllParametrsToStream(
+                        offset: ref offset,
+                        oldString: ref oldString,
+                        possibleOldString: ref possibleOldString,
+                        buffer: ref buffer,
+                        bufferToSetReplacingValue: ref bufferToSetReplacingValue);
                 }
                 
                 _streamToSetReplacingValue.Write(bufferToSetReplacingValue, 0, bufferToSetReplacingValue.Length);
@@ -79,6 +59,37 @@ namespace FourthTask.Logic.Components
             timer.Stop();
 
             Console.WriteLine($"ReplaceString: time {timer.ElapsedMilliseconds} ms");
+        }
+
+        private void SetAllParametrsToStream(ref int offset, ref string oldString, ref string possibleOldString,
+            ref byte[] buffer, ref byte[] bufferToSetReplacingValue)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < possibleOldString.Length; i++)
+            {
+                if (oldString[i] == possibleOldString[i])
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == possibleOldString.Length)
+            {
+                offset = counter;
+
+                var amountOfBytes = Encoding.UTF8.GetBytes(possibleOldString);
+
+                for (int i = 0; i < amountOfBytes.Length; i++)
+                {
+                    buffer[i] = amountOfBytes[i];
+                    bufferToSetReplacingValue[^(i + 1)] = 0;
+                }
+            }
+            else
+            {
+                offset = 0;
+            }
         }
 
         public void Dispose() 

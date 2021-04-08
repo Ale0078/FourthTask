@@ -48,31 +48,11 @@ namespace FourthTask.Logic.Components
 
                 if (possibleStringToCount.Length <= stringToCount.Length)
                 {
-                    int counter = 0;
-
-                    for (int i = 0; i < possibleStringToCount.Length; i++)
-                    {
-                        if (stringToCount[i] == possibleStringToCount[i])
-                        {
-                            counter++;
-                        }
-                    }
-
-                    if (counter == possibleStringToCount.Length)
-                    {
-                        offset = counter;
-
-                        var amountOfBytes = Encoding.UTF8.GetBytes(possibleStringToCount);
-
-                        for (int i = 0; i < amountOfBytes.Length; i++)
-                        {
-                            buffer[i] = amountOfBytes[i];
-                        }
-                    }
-                    else
-                    {
-                        offset = 0;
-                    }
+                    SetAllParametrsToStream(
+                        offset: ref offset,
+                        stringToCount: ref stringToCount,
+                        possibleStringToCount: ref possibleStringToCount,
+                        buffer: ref buffer);
                 }
 
                 foreach (var item in possibleAnswers)
@@ -89,6 +69,36 @@ namespace FourthTask.Logic.Components
             Console.WriteLine($"CountString: {timer.ElapsedMilliseconds} ms");
 
             return stringCounter;
+        }
+
+        private void SetAllParametrsToStream(ref int offset, ref string stringToCount, ref string possibleStringToCount,
+            ref byte[] buffer)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < possibleStringToCount.Length; i++)
+            {
+                if (stringToCount[i] == possibleStringToCount[i])
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == possibleStringToCount.Length)
+            {
+                offset = counter;
+
+                var amountOfBytes = Encoding.UTF8.GetBytes(possibleStringToCount);
+
+                for (int i = 0; i < amountOfBytes.Length; i++)
+                {
+                    buffer[i] = amountOfBytes[i];
+                }
+            }
+            else
+            {
+                offset = 0;
+            }
         }
 
         public void Dispose()
