@@ -4,6 +4,7 @@ using NLog;
 
 using static System.Console;
 
+using FourthTask.Messages;
 using FourthTask.Controllers;
 using FourthTask.Logic.Components.Builders;
 using FourthTask.Logic.UserInterface.Abstracts;
@@ -39,19 +40,20 @@ namespace FourthTask
                     SecondMode();
                     break;
                 default:
-                    WriteLine("If you want to count string in file you has to use first mode:\n" +
-                        "[filename] [string] where filename - file in current repository\n." +
-                        "If you want to get new file with replacing stirng that you need you has to use second mode:\n" +
-                        "[filename] [oldstring] [newstring] where filename - file in current repository.");
+                    _logger.Error(LogMessage.STARTUP_ERROR);
+
+                    WriteLine(UserMessage.STARTUP_ERROR);
                     break;
             }
+
+            _logger.Info(LogMessage.STARTUP);
         }
 
         private void FirstMode() 
         {
             if (!_checker.CheckValue(fileName => File.Exists(fileName), _filePath, false)) 
             {
-                WriteLine("You has to enter a filename that located in current repository");
+                WriteLine(UserMessage.FILE_ERROR);
 
                 return;
             }
@@ -65,7 +67,7 @@ namespace FourthTask
         {
             if (!_checker.CheckValue(fileName => File.Exists(fileName), _filePath, false))
             {
-                WriteLine("You has to enter a filename that located in current repository");
+                WriteLine(UserMessage.FILE_ERROR);
 
                 return;
             }
@@ -88,7 +90,7 @@ namespace FourthTask
             }
             finally 
             {
-                _logger.Info("Controller was created");
+                _logger.Info(LogMessage.GET_CONTROLLER);
             }
         }
     }

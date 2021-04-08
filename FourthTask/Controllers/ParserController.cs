@@ -1,5 +1,6 @@
 ﻿using NLog;
 
+using FourthTask.Messages;
 using FourthTask.Logic.Components.Interfaces;
 using FourthTask.Logic.UserInterface.Abstracts;
 using FourthTask.Logic.Components.Builders.Interfaces;
@@ -20,19 +21,19 @@ namespace FourthTask.Controllers
         {
             base.SetCounterBuilder(counterBuilder);
 
-            _logger.Info("New Counter Builder was setted up");
+            _logger.Info(LogMessage.SET_COUNTER_BUILDER);
         }
 
         public override void SetReplacerBuilder(ITextReplacerBuilder replacerBuilder)
         {
             base.SetReplacerBuilder(replacerBuilder);
 
-            _logger.Info("New Replacer Builder was setted up");
+            _logger.Info(LogMessage.SET_REPLACER_BUILDER);
         }
 
         public override int CountString(string stringToCount)
         {
-            _logger.Info("Method CountString was started in ParserController");
+            _logger.Info(LogMessage.COUNT_STRING);
 
             using ITextCounter counter = CounterBuilder.Create();
 
@@ -41,7 +42,7 @@ namespace FourthTask.Controllers
 
         public override void ReplaceString(string oldStirng, string newString)
         {
-            _logger.Info("Method ReplaceString was started in ParserController");
+            _logger.Info(LogMessage.REPLACE_STRING);
 
             using ITextReplacer replacer = ReplacerBuilder.Create();
 

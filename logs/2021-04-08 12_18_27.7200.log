@@ -1,0 +1,5 @@
+2021-04-08 12:18:27.7200 | ERROR | FourthTask.Startup | Invalid amount  of arguments.
+If you want to count string in file you has to use first mode:
+[filename] [string] where filename - file in current repository
+.If you want to get new file with replacing stirng that you need you has to use second mode:
+[filename] [oldstring] [newstring] where filename - file in current repository.
