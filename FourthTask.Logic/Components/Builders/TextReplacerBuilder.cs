@@ -8,8 +8,6 @@ namespace FourthTask.Logic.Components.Builders
 {
     public class TextReplacerBuilder : ITextReplacerBuilder
     {
-        private bool disposed;
-
         private Stream StreamToGetValueToReplace { get; set; }
         private Stream StreamToSetReplacingValue { get; set; }
 
@@ -19,31 +17,9 @@ namespace FourthTask.Logic.Components.Builders
             StreamToSetReplacingValue = streamToSetReplacingValue;
         }
 
-        ~TextReplacerBuilder() 
-        {
-            DisposeWithoutGC();
-        }
-
         public ITextReplacer Create() 
         {
             return new TextReplacer(StreamToGetValueToReplace, StreamToSetReplacingValue);
-        }
-
-        public void Dispose() 
-        {
-            DisposeWithoutGC();
-            GC.SuppressFinalize(this);
-        }
-
-        private void DisposeWithoutGC() 
-        {
-            if (!disposed)
-            {
-                StreamToGetValueToReplace.Close();
-                StreamToSetReplacingValue.Close();
-            }
-
-            disposed = true;
         }
     }
 }

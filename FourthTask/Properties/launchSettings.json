@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FourthTask": {
+      "commandName": "Project",
+      "commandLineArgs": "Test.txt Text"
+    }
+  }
+}
