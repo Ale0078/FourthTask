@@ -8,7 +8,8 @@ using FourthTask.Messages;
 using FourthTask.Controllers;
 using FourthTask.Logic.Components.Builders;
 using FourthTask.Logic.UserInterface.Abstracts;
-using LibToTasks.Validation;
+using LibToTasks.Validation.Interfaces;
+using LibToTasks.Builders;
 
 namespace FourthTask
 {
@@ -18,12 +19,12 @@ namespace FourthTask
         private readonly string[] _mainArguments;
         private readonly string _filePath;
 
-        private readonly Validator _checker;
+        private readonly IValidator _checker;
 
         public Startup(string[] mainArguments) 
         {
             _logger = LogManager.GetCurrentClassLogger();
-            _checker = new Validator();
+            _checker = new DefaultValidatorBuilder().Create();
 
             _mainArguments = mainArguments;
             _filePath = Path.Combine(Environment.CurrentDirectory, _mainArguments[0]);
