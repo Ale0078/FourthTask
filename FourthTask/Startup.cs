@@ -27,7 +27,11 @@ namespace FourthTask
             _checker = new DefaultValidatorBuilder().Create();
 
             _mainArguments = mainArguments;
-            _filePath = Path.Combine(Environment.CurrentDirectory, _mainArguments[0]);
+
+            if (_mainArguments.Length > 0)
+            {
+                _filePath = Path.Combine(Environment.CurrentDirectory, _mainArguments[0]);
+            }
         }
 
         public void Start() 
