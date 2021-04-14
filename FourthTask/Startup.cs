@@ -58,7 +58,10 @@ namespace FourthTask
                 return;
             }
 
-            Controller parserController = GetController();
+            using FileStream reader = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
+            using FileStream writer = new FileStream($"{_filePath}_Replaced.txt", FileMode.Create, FileAccess.Write);
+
+            Controller parserController = GetController(reader, writer);
 
             WriteLine($"Word \"{_mainArguments[1]}\" was found {parserController.CountString(_mainArguments[1])} times");
         }
@@ -72,21 +75,24 @@ namespace FourthTask
                 return;
             }
 
-            Controller parserController = GetController();
+            using FileStream reader = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
+            using FileStream writer = new FileStream($"{_filePath}_Replaced.txt", FileMode.Create, FileAccess.Write);
+
+            Controller parserController = GetController(reader, writer);
 
             parserController.ReplaceString(_mainArguments[1], _mainArguments[2]);
         }
 
-        private Controller GetController() 
+        private Controller GetController(Stream reader, Stream writer) 
         {
             try
             {
                 return new ParserController(
                 counterBuilder: new TextConterBuidler(
-                    streamToCountString: new FileStream(_filePath, FileMode.Open, FileAccess.Read)),
+                    streamToCountString: reader),
                 replacerBuilder: new TextReplacerBuilder(
-                    streamToGetValueToReplace: new FileStream(_filePath, FileMode.Open, FileAccess.Read),
-                    streamToSetReplacingValue: new FileStream($"{_filePath}_Replaced.txt", FileMode.Create, FileAccess.Write)));
+                    streamToGetValueToReplace: reader,
+                    streamToSetReplacingValue: writer));
             }
             finally 
             {

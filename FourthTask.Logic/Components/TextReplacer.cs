@@ -9,7 +9,7 @@ namespace FourthTask.Logic.Components
 {
     public class TextReplacer : ITextReplacer
     {
-        private bool disposed;
+        //private bool disposed;
         private readonly Stream _streamToGetValueToReplace;
         private readonly Stream _streamToSetReplacingValue;
         private char[] _separators = new char[]
@@ -24,7 +24,6 @@ namespace FourthTask.Logic.Components
         public void ReplaceString(string oldString, string newString)//ToDo: Delete Stopwatch
         {
             Stopwatch timer = new();
-
             timer.Start();
 
             int offset = 0;
@@ -92,26 +91,26 @@ namespace FourthTask.Logic.Components
             }
         }
 
-        public void Dispose() 
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose() 
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
-        private void Dispose(bool disposing) 
-        {
-            if (!disposed) 
-            {
-                if (disposing) 
-                {
-                    _separators = null;
-                }
+        //private void Dispose(bool disposing) 
+        //{
+        //    if (!disposed) 
+        //    {
+        //        if (disposing) 
+        //        {
+        //            Array.Clear(_separators, 0, _separators.Length);
+        //        }
 
-                _streamToGetValueToReplace.Close();
-                _streamToSetReplacingValue.Close();
-            }
+        //        _streamToGetValueToReplace.Close();
+        //        _streamToSetReplacingValue.Close();
+        //    }
 
-            disposed = true;
-        }
+        //    disposed = true;
+        //}
     }
 }

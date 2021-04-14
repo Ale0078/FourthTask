@@ -9,7 +9,7 @@ namespace FourthTask.Logic.Components
 {
     public class TextCounter : ITextCounter
     {
-        private bool disposed;
+        //private bool disposed;
         private readonly Stream _streamToGetString;
         private char[] _separators = new char[]
                 { ' ', ',', '.', ';', ':', '!', '?', '|', '<', '>', '"', '\r', '\n', '\t', '(', ')', '\0' };
@@ -19,10 +19,10 @@ namespace FourthTask.Logic.Components
             _streamToGetString = streamToGetString;
         }
 
-        ~TextCounter() 
-        {
-            Dispose(false);
-        }
+        //~TextCounter() 
+        //{
+        //    Dispose(false);
+        //}
 
         public int CountString(string stringToCount) //ToDo: Delete Stopwatch
         {
@@ -101,25 +101,25 @@ namespace FourthTask.Logic.Components
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
-        private void Dispose(bool disposing) 
-        {
-            if (!disposed) 
-            {
-                if (disposing) 
-                {
-                    _separators = null;
-                }
+        //private void Dispose(bool disposing) 
+        //{
+        //    if (!disposed) 
+        //    {
+        //        if (disposing) 
+        //        {
+        //            Array.Clear(_separators, 0, _separators.Length);
+        //        }
 
-                _streamToGetString.Close();
-            }
+        //        _streamToGetString.Close();
+        //    }
 
-            disposed = true;
-        }
+        //    disposed = true;
+        //}
     }
 }

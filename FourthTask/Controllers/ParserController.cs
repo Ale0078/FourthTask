@@ -35,7 +35,7 @@ namespace FourthTask.Controllers
         {
             _logger.Info(LogMessage.COUNT_STRING);
 
-            using ITextCounter counter = CounterBuilder.Create();
+            ITextCounter counter = CounterBuilder.Create();
 
             return counter.CountString(stringToCount);
         }
@@ -44,7 +44,7 @@ namespace FourthTask.Controllers
         {
             _logger.Info(LogMessage.REPLACE_STRING);
 
-            using ITextReplacer replacer = ReplacerBuilder.Create();
+            ITextReplacer replacer = ReplacerBuilder.Create();
 
             replacer.ReplaceString(oldStirng, newString);
         }

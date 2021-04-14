@@ -2,7 +2,7 @@
 
 namespace FourthTask.Logic.Components.Interfaces
 {
-    public interface ITextCounter : IDisposable
+    public interface ITextCounter //: IDisposable
     {
         int CountString(string stringToCount);
     }

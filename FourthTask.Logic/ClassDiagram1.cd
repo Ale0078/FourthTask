@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FourthTask.Logic.Components.TextCounter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAACAAAAAAAAAAAAAAgAAAAAEAAAIAAAAAAAA=</HashCode>
+      <FileName>Components\TextCounter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_streamToGetString" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FourthTask.Logic.Components.TextReplacer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAACAAAAAAAAAEAAQAgAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Components\TextReplacer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FourthTask.Logic.Components.Builders.TextConterBuidler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Builders\TextConterBuidler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FourthTask.Logic.Components.Builders.TextReplacerBuilder" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <AssociationLine Name="StreamToGetValueToReplace" Type="System.IO.Stream">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="-0.471" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="StreamToSetReplacingValue" Type="System.IO.Stream">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.279" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAGAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Builders\TextReplacerBuilder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StreamToGetValueToReplace" />
+      <Property Name="StreamToSetReplacingValue" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FourthTask.Logic.UserInterface.Abstracts.Controller">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAEQAABAAAAAAAAAAYAAAAAAAA=</HashCode>
+      <FileName>UserInterface\Abstracts\Controller.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CounterBuilder" />
+      <Property Name="ReplacerBuilder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.IO.Stream" Collapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="FourthTask.Logic.Components.Builders.Interfaces.ITextCounterBuilder" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Builders\Interfaces\ITextCounterBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FourthTask.Logic.Components.Builders.Interfaces.ITextReplacerBuilder" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Builders\Interfaces\ITextReplacerBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FourthTask.Logic.Components.Interfaces.ITextCounter" Collapsed="true">
+    <Position X="8.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Components\Interfaces\ITextCounter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FourthTask.Logic.Components.Interfaces.ITextReplacer" Collapsed="true">
+    <Position X="1.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Interfaces\ITextReplacer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
